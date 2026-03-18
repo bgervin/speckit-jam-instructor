@@ -232,7 +232,7 @@
 <!-- ============ HERO ============ -->
 <div class="hero">
   <h1>💰 The $100 Test</h1>
-  <p class="subtitle">SpecKit + GitHub Copilot CLI — Hands-on Lab</p>
+  <p class="subtitle">SpecKit + Copilot CLI — Hands-on Lab</p>
   <span class="badge">AI Forward Session</span>
 </div>
 
@@ -269,24 +269,45 @@
     <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
       <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
         <span style="font-size: 1.1rem;">☐</span>
-        <strong>GitHub Copilot CLI</strong> installed and authenticated (<code>ghcs --version</code>)
+        <strong>Copilot CLI</strong> installed and authenticated (<code>copilot --version</code>)
       </div>
       <details style="margin: 0.5rem 0 0 1.6rem; border: none;">
-        <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install GitHub Copilot CLI</summary>
+        <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install Copilot CLI</summary>
         <div class="details-content" style="padding: 0.75rem 0 0 0;">
           <ol>
-            <li><strong>Install the GitHub CLI</strong> if you haven't already:
-              <ul>
-                <li><strong>Windows:</strong> <code>winget install --id GitHub.cli</code></li>
-                <li><strong>macOS:</strong> <code>brew install gh</code></li>
-                <li><strong>Linux:</strong> See <a href="https://github.com/cli/cli/blob/trunk/docs/install_linux.md" target="_blank">Linux install instructions</a></li>
-              </ul>
+            <li>Install via winget:
+              <div style="margin: 0.5rem 0; background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">
+                winget install --id GitHub.Copilot
+              </div>
             </li>
-            <li>Authenticate: <code>gh auth login</code> (select GitHub.com, HTTPS, and log in via browser)</li>
-            <li>Install the Copilot extension: <code>gh extension install github/gh-copilot</code></li>
-            <li>Verify: <code>ghcs --version</code></li>
+            <li>Close and reopen your terminal so the <code>copilot</code> command is available</li>
+            <li>Authenticate: <code>copilot login</code></li>
+            <li>Verify: <code>copilot --version</code></li>
           </ol>
-          <p style="margin-top: 0.5rem;">📖 <a href="https://docs.github.com/en/copilot/managing-copilot/configure-personal-settings/installing-github-copilot-in-the-cli" target="_blank">GitHub Copilot CLI Docs</a></p>
+          <p style="margin-top: 0.5rem;">📖 <a href="https://docs.github.com/en/copilot/how-tos/copilot-cli" target="_blank">Copilot CLI Docs</a></p>
+        </div>
+      </details>
+    </div>
+
+    <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+      <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
+        <span style="font-size: 1.1rem;">☐</span>
+        <strong>GitHub CLI</strong> installed and authenticated (<code>gh --version</code>)
+      </div>
+      <details style="margin: 0.5rem 0 0 1.6rem; border: none;">
+        <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install GitHub CLI</summary>
+        <div class="details-content" style="padding: 0.75rem 0 0 0;">
+          <ol>
+            <li>Install via winget:
+              <div style="margin: 0.5rem 0; background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">
+                winget install --id GitHub.cli
+              </div>
+            </li>
+            <li>Close and reopen your terminal</li>
+            <li>Authenticate: <code>gh auth login</code> (select GitHub.com, HTTPS, and log in via browser)</li>
+            <li>Verify: <code>gh --version</code></li>
+          </ol>
+          <p style="margin-top: 0.5rem;">📖 <a href="https://cli.github.com/" target="_blank">GitHub CLI Docs</a></p>
         </div>
       </details>
     </div>
@@ -300,16 +321,13 @@
         <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install VS Code</summary>
         <div class="details-content" style="padding: 0.75rem 0 0 0;">
           <ol>
-            <li>Go to <a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a></li>
-            <li>Click the download button for your operating system (Windows, macOS, or Linux)</li>
-            <li>Run the installer:
-              <ul>
-                <li><strong>Windows:</strong> Run the <code>.exe</code> installer. Check "Add to PATH" when prompted.</li>
-                <li><strong>macOS:</strong> Open the <code>.dmg</code>, drag VS Code to Applications. Then open VS Code and press <code>Cmd+Shift+P</code> → type "shell command" → select <strong>Install 'code' command in PATH</strong>.</li>
-                <li><strong>Linux:</strong> Use the <code>.deb</code> or <code>.rpm</code> package, or install via snap: <code>sudo snap install code --classic</code></li>
-              </ul>
+            <li>Install via winget:
+              <div style="margin: 0.5rem 0; background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">
+                winget install --id Microsoft.VisualStudioCode
+              </div>
             </li>
-            <li>Verify: open a terminal and run <code>code --version</code></li>
+            <li>Close and reopen your terminal</li>
+            <li>Verify: <code>code --version</code></li>
           </ol>
           <p style="margin-top: 0.5rem;">📖 <a href="https://code.visualstudio.com/docs/setup/setup-overview" target="_blank">VS Code Setup Guide</a></p>
         </div>
@@ -319,24 +337,21 @@
     <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
       <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
         <span style="font-size: 1.1rem;">☐</span>
-        <strong>Node.js 18+</strong> installed (<code>node --version</code>)
+        <strong>Node.js 20 LTS</strong> installed (<code>node --version</code>)
       </div>
       <details style="margin: 0.5rem 0 0 1.6rem; border: none;">
         <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install Node.js</summary>
         <div class="details-content" style="padding: 0.75rem 0 0 0;">
           <ol>
-            <li>Go to <a href="https://nodejs.org/" target="_blank">nodejs.org</a></li>
-            <li>Download the <strong>LTS</strong> (Long Term Support) version — this is the recommended version</li>
-            <li>Run the installer:
-              <ul>
-                <li><strong>Windows:</strong> Run the <code>.msi</code> installer. The defaults are fine — it will add Node.js and npm to your PATH automatically.</li>
-                <li><strong>macOS:</strong> Run the <code>.pkg</code> installer, or use Homebrew: <code>brew install node</code></li>
-                <li><strong>Linux:</strong> Use the <a href="https://github.com/nodesource/distributions" target="_blank">NodeSource installer</a> or your package manager</li>
-              </ul>
+            <li>Install via winget:
+              <div style="margin: 0.5rem 0; background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">
+                winget install --id OpenJS.NodeJS.20
+              </div>
             </li>
-            <li>Verify: open a <strong>new</strong> terminal and run:
+            <li>Close and reopen your terminal</li>
+            <li>Verify:
               <ul>
-                <li><code>node --version</code> (should be v18.x or higher)</li>
+                <li><code>node --version</code> (should be v20.x or higher)</li>
                 <li><code>npm --version</code> (should come bundled with Node.js)</li>
               </ul>
             </li>
@@ -355,14 +370,12 @@
         <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install Git</summary>
         <div class="details-content" style="padding: 0.75rem 0 0 0;">
           <ol>
-            <li>Check if Git is already installed: open a terminal and run <code>git --version</code>. If you see a version number, you're all set!</li>
-            <li>If not installed:
-              <ul>
-                <li><strong>Windows:</strong> Download from <a href="https://git-scm.com/download/win" target="_blank">git-scm.com</a> and run the installer. Use the defaults — make sure "Git from the command line" is selected.</li>
-                <li><strong>macOS:</strong> Run <code>xcode-select --install</code> in Terminal (installs Git along with other dev tools), or <code>brew install git</code></li>
-                <li><strong>Linux:</strong> <code>sudo apt install git</code> (Debian/Ubuntu) or <code>sudo dnf install git</code> (Fedora)</li>
-              </ul>
+            <li>Install via winget:
+              <div style="margin: 0.5rem 0; background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">
+                winget install --id Git.Git
+              </div>
             </li>
+            <li>Close and reopen your terminal</li>
             <li>Configure your identity (required for commits):
               <div style="margin: 0.5rem 0; background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">
                 git config --global user.name "Your Name"<br>
@@ -510,10 +523,10 @@ npm start</code></pre>
   <p>Build a results dashboard that shows aggregated voting data with a visual bar chart. This is the "wow" feature — the missing piece that brings The $100 Test to life.</p>
 
   <div class="step" data-step="1">
-    <h4>Start GitHub Copilot CLI</h4>
+    <h4>Start Copilot CLI</h4>
     <p>In the VS Code terminal (<code>Ctrl+`</code>), start a Copilot CLI session:</p>
     <div class="code-block">
-      <pre><code>gh copilot</code></pre>
+      <pre><code>copilot</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
     <p>You should see the Copilot CLI prompt appear, ready for commands.</p>
@@ -521,10 +534,9 @@ npm start</code></pre>
       <summary>Having trouble starting Copilot CLI?</summary>
       <div class="details-content">
         <ul>
-          <li>Make sure you're authenticated: run <code>gh auth status</code> in a separate terminal to check</li>
-          <li>If not authenticated, run <code>gh auth login</code> first</li>
-          <li>If the Copilot extension isn't installed: <code>gh extension install github/gh-copilot</code></li>
-          <li>Try <code>ghcs</code> as an alternative command</li>
+          <li>Make sure it's installed: <code>copilot --version</code></li>
+          <li>If not found, install it: <code>winget install --id GitHub.Copilot</code> then reopen your terminal</li>
+          <li>If not authenticated, run <code>copilot login</code></li>
         </ul>
       </div>
     </details>
