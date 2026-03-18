@@ -50,7 +50,7 @@ npm --version
 
 ### 6. Copilot CLI
 ```bash
-npm install -g @githubnext/copilot-cli
+npm install -g @github/copilot
 copilot login
 copilot --version
 ```
