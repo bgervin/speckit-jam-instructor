@@ -257,99 +257,125 @@
 <div class="section" id="prerequisites">
   <h2>✅ Prerequisites</h2>
   <p>Make sure you have the following ready <strong>before the session starts</strong>:</p>
-  <ul class="checklist">
-    <li><strong>GitHub account</strong> with Copilot access</li>
-    <li><strong>GitHub Copilot CLI</strong> installed and authenticated (<code>ghcs --version</code>)</li>
-    <li><strong>VS Code</strong> installed (<code>code --version</code>)</li>
-    <li><strong>Node.js 18+</strong> installed (<code>node --version</code>)</li>
-    <li><strong>Git</strong> installed (<code>git --version</code>)</li>
-  </ul>
 
-  <details>
-    <summary>How to install VS Code</summary>
-    <div class="details-content">
-      <ol>
-        <li>Go to <a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a></li>
-        <li>Click the download button for your operating system (Windows, macOS, or Linux)</li>
-        <li>Run the installer:
-          <ul>
-            <li><strong>Windows:</strong> Run the <code>.exe</code> installer. Check "Add to PATH" when prompted.</li>
-            <li><strong>macOS:</strong> Open the <code>.dmg</code>, drag VS Code to Applications. Then open VS Code and press <code>Cmd+Shift+P</code> → type "shell command" → select <strong>Install 'code' command in PATH</strong>.</li>
-            <li><strong>Linux:</strong> Use the <code>.deb</code> or <code>.rpm</code> package, or install via snap: <code>sudo snap install code --classic</code></li>
-          </ul>
-        </li>
-        <li>Verify: open a terminal and run <code>code --version</code></li>
-      </ol>
-      <p style="margin-top: 0.5rem;">📖 <a href="https://code.visualstudio.com/docs/setup/setup-overview" target="_blank">VS Code Setup Guide</a></p>
+  <div style="margin-top: 1rem;">
+    <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+      <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
+        <span style="font-size: 1.1rem;">☐</span>
+        <strong>GitHub account</strong> with Copilot access
+      </div>
     </div>
-  </details>
 
-  <details>
-    <summary>How to install GitHub Copilot CLI</summary>
-    <div class="details-content">
-      <ol>
-        <li><strong>Install the GitHub CLI</strong> if you haven't already:
-          <ul>
-            <li><strong>Windows:</strong> <code>winget install --id GitHub.cli</code></li>
-            <li><strong>macOS:</strong> <code>brew install gh</code></li>
-            <li><strong>Linux:</strong> See <a href="https://github.com/cli/cli/blob/trunk/docs/install_linux.md" target="_blank">Linux install instructions</a></li>
-          </ul>
-        </li>
-        <li>Authenticate: <code>gh auth login</code> (select GitHub.com, HTTPS, and log in via browser)</li>
-        <li>Install the Copilot extension: <code>gh extension install github/gh-copilot</code></li>
-        <li>Verify: <code>ghcs --version</code></li>
-      </ol>
-      <p style="margin-top: 0.5rem;">📖 <a href="https://docs.github.com/en/copilot/managing-copilot/configure-personal-settings/installing-github-copilot-in-the-cli" target="_blank">GitHub Copilot CLI Docs</a></p>
+    <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+      <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
+        <span style="font-size: 1.1rem;">☐</span>
+        <strong>GitHub Copilot CLI</strong> installed and authenticated (<code>ghcs --version</code>)
+      </div>
+      <details style="margin: 0.5rem 0 0 1.6rem; border: none;">
+        <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install GitHub Copilot CLI</summary>
+        <div class="details-content" style="padding: 0.75rem 0 0 0;">
+          <ol>
+            <li><strong>Install the GitHub CLI</strong> if you haven't already:
+              <ul>
+                <li><strong>Windows:</strong> <code>winget install --id GitHub.cli</code></li>
+                <li><strong>macOS:</strong> <code>brew install gh</code></li>
+                <li><strong>Linux:</strong> See <a href="https://github.com/cli/cli/blob/trunk/docs/install_linux.md" target="_blank">Linux install instructions</a></li>
+              </ul>
+            </li>
+            <li>Authenticate: <code>gh auth login</code> (select GitHub.com, HTTPS, and log in via browser)</li>
+            <li>Install the Copilot extension: <code>gh extension install github/gh-copilot</code></li>
+            <li>Verify: <code>ghcs --version</code></li>
+          </ol>
+          <p style="margin-top: 0.5rem;">📖 <a href="https://docs.github.com/en/copilot/managing-copilot/configure-personal-settings/installing-github-copilot-in-the-cli" target="_blank">GitHub Copilot CLI Docs</a></p>
+        </div>
+      </details>
     </div>
-  </details>
 
-  <details>
-    <summary>How to install Node.js</summary>
-    <div class="details-content">
-      <ol>
-        <li>Go to <a href="https://nodejs.org/" target="_blank">nodejs.org</a></li>
-        <li>Download the <strong>LTS</strong> (Long Term Support) version — this is the recommended version</li>
-        <li>Run the installer:
-          <ul>
-            <li><strong>Windows:</strong> Run the <code>.msi</code> installer. The defaults are fine — it will add Node.js and npm to your PATH automatically.</li>
-            <li><strong>macOS:</strong> Run the <code>.pkg</code> installer, or use Homebrew: <code>brew install node</code></li>
-            <li><strong>Linux:</strong> Use the <a href="https://github.com/nodesource/distributions" target="_blank">NodeSource installer</a> or your package manager</li>
-          </ul>
-        </li>
-        <li>Verify: open a <strong>new</strong> terminal and run:
-          <ul>
-            <li><code>node --version</code> (should be v18.x or higher)</li>
-            <li><code>npm --version</code> (should come bundled with Node.js)</li>
-          </ul>
-        </li>
-      </ol>
-      <p style="margin-top: 0.5rem;">📖 <a href="https://nodejs.org/en/learn/getting-started/how-to-install-nodejs" target="_blank">Node.js Installation Guide</a></p>
+    <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+      <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
+        <span style="font-size: 1.1rem;">☐</span>
+        <strong>VS Code</strong> installed (<code>code --version</code>)
+      </div>
+      <details style="margin: 0.5rem 0 0 1.6rem; border: none;">
+        <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install VS Code</summary>
+        <div class="details-content" style="padding: 0.75rem 0 0 0;">
+          <ol>
+            <li>Go to <a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a></li>
+            <li>Click the download button for your operating system (Windows, macOS, or Linux)</li>
+            <li>Run the installer:
+              <ul>
+                <li><strong>Windows:</strong> Run the <code>.exe</code> installer. Check "Add to PATH" when prompted.</li>
+                <li><strong>macOS:</strong> Open the <code>.dmg</code>, drag VS Code to Applications. Then open VS Code and press <code>Cmd+Shift+P</code> → type "shell command" → select <strong>Install 'code' command in PATH</strong>.</li>
+                <li><strong>Linux:</strong> Use the <code>.deb</code> or <code>.rpm</code> package, or install via snap: <code>sudo snap install code --classic</code></li>
+              </ul>
+            </li>
+            <li>Verify: open a terminal and run <code>code --version</code></li>
+          </ol>
+          <p style="margin-top: 0.5rem;">📖 <a href="https://code.visualstudio.com/docs/setup/setup-overview" target="_blank">VS Code Setup Guide</a></p>
+        </div>
+      </details>
     </div>
-  </details>
 
-  <details>
-    <summary>How to install Git</summary>
-    <div class="details-content">
-      <ol>
-        <li>Check if Git is already installed: open a terminal and run <code>git --version</code>. If you see a version number, you're all set!</li>
-        <li>If not installed:
-          <ul>
-            <li><strong>Windows:</strong> Download from <a href="https://git-scm.com/download/win" target="_blank">git-scm.com</a> and run the installer. Use the defaults — make sure "Git from the command line" is selected.</li>
-            <li><strong>macOS:</strong> Run <code>xcode-select --install</code> in Terminal (installs Git along with other dev tools), or <code>brew install git</code></li>
-            <li><strong>Linux:</strong> <code>sudo apt install git</code> (Debian/Ubuntu) or <code>sudo dnf install git</code> (Fedora)</li>
-          </ul>
-        </li>
-        <li>Configure your identity (required for commits):
-          <div style="margin: 0.5rem 0; background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">
-            git config --global user.name "Your Name"<br>
-            git config --global user.email "your.email@example.com"
-          </div>
-        </li>
-        <li>Verify: <code>git --version</code></li>
-      </ol>
-      <p style="margin-top: 0.5rem;">📖 <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">Git Installation Guide</a></p>
+    <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+      <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
+        <span style="font-size: 1.1rem;">☐</span>
+        <strong>Node.js 18+</strong> installed (<code>node --version</code>)
+      </div>
+      <details style="margin: 0.5rem 0 0 1.6rem; border: none;">
+        <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install Node.js</summary>
+        <div class="details-content" style="padding: 0.75rem 0 0 0;">
+          <ol>
+            <li>Go to <a href="https://nodejs.org/" target="_blank">nodejs.org</a></li>
+            <li>Download the <strong>LTS</strong> (Long Term Support) version — this is the recommended version</li>
+            <li>Run the installer:
+              <ul>
+                <li><strong>Windows:</strong> Run the <code>.msi</code> installer. The defaults are fine — it will add Node.js and npm to your PATH automatically.</li>
+                <li><strong>macOS:</strong> Run the <code>.pkg</code> installer, or use Homebrew: <code>brew install node</code></li>
+                <li><strong>Linux:</strong> Use the <a href="https://github.com/nodesource/distributions" target="_blank">NodeSource installer</a> or your package manager</li>
+              </ul>
+            </li>
+            <li>Verify: open a <strong>new</strong> terminal and run:
+              <ul>
+                <li><code>node --version</code> (should be v18.x or higher)</li>
+                <li><code>npm --version</code> (should come bundled with Node.js)</li>
+              </ul>
+            </li>
+          </ol>
+          <p style="margin-top: 0.5rem;">📖 <a href="https://nodejs.org/en/learn/getting-started/how-to-install-nodejs" target="_blank">Node.js Installation Guide</a></p>
+        </div>
+      </details>
     </div>
-  </details>
+
+    <div style="padding: 0.75rem 0;">
+      <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
+        <span style="font-size: 1.1rem;">☐</span>
+        <strong>Git</strong> installed (<code>git --version</code>)
+      </div>
+      <details style="margin: 0.5rem 0 0 1.6rem; border: none;">
+        <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install Git</summary>
+        <div class="details-content" style="padding: 0.75rem 0 0 0;">
+          <ol>
+            <li>Check if Git is already installed: open a terminal and run <code>git --version</code>. If you see a version number, you're all set!</li>
+            <li>If not installed:
+              <ul>
+                <li><strong>Windows:</strong> Download from <a href="https://git-scm.com/download/win" target="_blank">git-scm.com</a> and run the installer. Use the defaults — make sure "Git from the command line" is selected.</li>
+                <li><strong>macOS:</strong> Run <code>xcode-select --install</code> in Terminal (installs Git along with other dev tools), or <code>brew install git</code></li>
+                <li><strong>Linux:</strong> <code>sudo apt install git</code> (Debian/Ubuntu) or <code>sudo dnf install git</code> (Fedora)</li>
+              </ul>
+            </li>
+            <li>Configure your identity (required for commits):
+              <div style="margin: 0.5rem 0; background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">
+                git config --global user.name "Your Name"<br>
+                git config --global user.email "your.email@example.com"
+              </div>
+            </li>
+            <li>Verify: <code>git --version</code></li>
+          </ol>
+          <p style="margin-top: 0.5rem;">📖 <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">Git Installation Guide</a></p>
+        </div>
+      </details>
+    </div>
+  </div>
 </div>
 
 <!-- ============ GETTING STARTED ============ -->
@@ -484,17 +510,51 @@ npm start</code></pre>
   <p>Build a results dashboard that shows aggregated voting data with a visual bar chart. This is the "wow" feature — the missing piece that brings The $100 Test to life.</p>
 
   <div class="step" data-step="1">
+    <h4>Start GitHub Copilot CLI</h4>
+    <p>In the VS Code terminal (<code>Ctrl+`</code>), start a Copilot CLI session:</p>
+    <div class="code-block">
+      <pre><code>gh copilot</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+    <p>You should see the Copilot CLI prompt appear, ready for commands.</p>
+    <details>
+      <summary>Having trouble starting Copilot CLI?</summary>
+      <div class="details-content">
+        <ul>
+          <li>Make sure you're authenticated: run <code>gh auth status</code> in a separate terminal to check</li>
+          <li>If not authenticated, run <code>gh auth login</code> first</li>
+          <li>If the Copilot extension isn't installed: <code>gh extension install github/gh-copilot</code></li>
+          <li>Try <code>ghcs</code> as an alternative command</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div class="step" data-step="2">
     <h4>Specify the feature with SpecKit</h4>
-    <p>Open the GitHub Copilot CLI and run the <code>/speckit.specify</code> command with the following prompt:</p>
+    <p><strong>In the Copilot CLI terminal</strong>, type <code>/speckit.specify</code> followed by the feature description below:</p>
     <div class="code-block">
       <pre><code>Create a "View Results" feature for the $100 Test app. Given a session code, display the aggregated voting results as a dashboard. Show a ranked list of items sorted by total dollars received (highest first). For each item, display: total dollars, average dollars per voter, and percentage of total budget. Show the total number of participants who voted. Include a simple bar chart visualization using HTML/CSS (no chart library needed). Only show results if at least one vote has been cast. Highlight the top-funded item. Include a REST API endpoint GET /api/sessions/:code/results and a web page at /results/:code.</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
+    <p>Wait for SpecKit to finish generating the spec. You'll see it create a new file in the <code>specs/</code> folder.</p>
   </div>
 
-  <div class="step" data-step="2">
-    <h4>Review the generated spec</h4>
-    <p>SpecKit will create <code>specs/003-view-results/spec.md</code>. Open it and review:</p>
+  <div class="step" data-step="3">
+    <h4>Review the generated spec in VS Code</h4>
+    <p><strong>In VS Code</strong>, open <code>specs/003-view-results/spec.md</code> from the Explorer panel (<code>Ctrl+Shift+E</code>).</p>
+    <p>To see a nicely formatted preview, press <code>Ctrl+Shift+V</code> to open the <strong>Markdown Preview</strong>, or click the preview icon (📖) in the top-right corner of the editor tab.</p>
+    <details>
+      <summary>How to preview Markdown in VS Code</summary>
+      <div class="details-content">
+        <ul>
+          <li><strong>Full preview:</strong> With the <code>.md</code> file open, press <code>Ctrl+Shift+V</code> — this opens the rendered Markdown in a new tab.</li>
+          <li><strong>Side-by-side preview:</strong> Press <code>Ctrl+K V</code> (press Ctrl+K, release, then press V) — this opens the preview next to the source so you can see both.</li>
+          <li><strong>Preview button:</strong> Look for the 📖 icon (Open Preview to the Side) in the top-right corner of the editor when a <code>.md</code> file is open.</li>
+        </ul>
+      </div>
+    </details>
+    <p style="margin-top:0.5rem">As you review, consider:</p>
     <ul style="margin-left:1rem;margin-top:0.5rem">
       <li>Does it capture all the requirements?</li>
       <li>Are the API response shapes well-defined?</li>
@@ -502,9 +562,9 @@ npm start</code></pre>
     </ul>
   </div>
 
-  <div class="step" data-step="3">
+  <div class="step" data-step="4">
     <h4>Clarify and refine the spec</h4>
-    <p>Run the clarify command to let SpecKit ask questions and tighten the spec:</p>
+    <p><strong>Back in the Copilot CLI terminal</strong>, run the clarify command to let SpecKit ask questions and tighten the spec:</p>
     <div class="code-block">
       <pre><code>/speckit.clarify</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
@@ -512,18 +572,19 @@ npm start</code></pre>
     <p>Answer SpecKit's questions to resolve any ambiguities. This is where the spec gets sharper.</p>
   </div>
 
-  <div class="step" data-step="4">
+  <div class="step" data-step="5">
     <h4>Create the implementation plan</h4>
+    <p><strong>In the Copilot CLI terminal</strong>, generate the plan:</p>
     <div class="code-block">
       <pre><code>/speckit.plan</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
-    <p>SpecKit generates a plan with tasks. Review the task breakdown — does it make sense?</p>
+    <p>SpecKit generates a plan with tasks. <strong>In VS Code</strong>, open the generated plan file and review the task breakdown — does it make sense?</p>
   </div>
 
-  <div class="step" data-step="5">
+  <div class="step" data-step="6">
     <h4>Review the tasks</h4>
-    <p>Look at the generated tasks. You should see things like:</p>
+    <p><strong>In VS Code</strong>, look at the generated tasks. You should see things like:</p>
     <ul style="margin-left:1rem;margin-top:0.5rem">
       <li>Create results aggregation logic</li>
       <li>Add the API endpoint</li>
@@ -532,22 +593,22 @@ npm start</code></pre>
     </ul>
   </div>
 
-  <div class="step" data-step="6">
+  <div class="step" data-step="7">
     <h4>Implement!</h4>
-    <p>Let SpecKit implement each task. It will generate source code and tests based on the spec and plan.</p>
+    <p><strong>In the Copilot CLI terminal</strong>, let SpecKit implement each task. It will generate source code and tests based on the spec and plan.</p>
     <div class="callout info">
-      <strong>💡 Tip:</strong> Watch the terminal as SpecKit works. It's creating code that matches your spec — not just "vibing" without requirements.
+      <strong>💡 Tip:</strong> Watch the terminal as SpecKit works, and keep VS Code open alongside — you'll see new files appear in the Explorer panel in real time. It's creating code that matches your spec — not just "vibing" without requirements.
     </div>
   </div>
 
-  <div class="step" data-step="7">
+  <div class="step" data-step="8">
     <h4>Test it!</h4>
-    <p>Run the tests to make sure everything works:</p>
+    <p><strong>In a separate terminal</strong> (open a new one with <code>Ctrl+Shift+`</code> in VS Code), run the tests to make sure everything works:</p>
     <div class="code-block">
       <pre><code>npm test</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
-    <p>Then restart the server and visit <code>/results/YOUR_SESSION_CODE</code> to see your dashboard!</p>
+    <p>Then start the server and visit <code>/results/YOUR_SESSION_CODE</code> in your browser to see your dashboard!</p>
     <div class="code-block">
       <pre><code>npm start</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
@@ -587,6 +648,7 @@ npm start</code></pre>
 
   <div class="step" data-step="1">
     <h4>Specify the feature</h4>
+    <p><strong>In the Copilot CLI terminal</strong>, run <code>/speckit.specify</code> with the prompt below:</p>
     <div class="code-block">
       <pre><code>Create a "Share Session" feature for the $100 Test app. After a facilitator creates a session, generate a shareable URL that participants can use to join and vote directly. The URL should include the session code (e.g., /vote/:code). Create a landing page at that URL that shows the session title, the list of items, and a form where participants enter their name and allocate their $100. The page should show a running total so voters can see they've allocated exactly $100 before submitting. Include form validation that prevents submission unless the total equals $100.</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
@@ -594,24 +656,32 @@ npm start</code></pre>
   </div>
 
   <div class="step" data-step="2">
+    <h4>Review the spec in VS Code</h4>
+    <p><strong>In VS Code</strong>, open the generated spec from the Explorer panel. Use <code>Ctrl+Shift+V</code> to preview the Markdown.</p>
+  </div>
+
+  <div class="step" data-step="3">
     <h4>Clarify</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
     <div class="code-block">
       <pre><code>/speckit.clarify</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
   </div>
 
-  <div class="step" data-step="3">
+  <div class="step" data-step="4">
     <h4>Plan</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
     <div class="code-block">
       <pre><code>/speckit.plan</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
+    <p><strong>In VS Code</strong>, review the generated plan and tasks.</p>
   </div>
 
-  <div class="step" data-step="4">
+  <div class="step" data-step="5">
     <h4>Implement and test</h4>
-    <p>Let SpecKit implement the tasks, then run <code>npm test</code> and visit <code>/vote/YOUR_CODE</code> in the browser.</p>
+    <p><strong>In the Copilot CLI terminal</strong>, let SpecKit implement the tasks. Then <strong>in a separate terminal</strong> (<code>Ctrl+Shift+`</code> in VS Code), run <code>npm test</code> and visit <code>/vote/YOUR_CODE</code> in the browser.</p>
   </div>
 
   <details>
@@ -641,6 +711,7 @@ npm start</code></pre>
 
   <div class="step" data-step="1">
     <h4>Specify the feature</h4>
+    <p><strong>In the Copilot CLI terminal</strong>, run <code>/speckit.specify</code> with the prompt below:</p>
     <div class="code-block">
       <pre><code>Create a "Close Session" feature for the $100 Test app. The facilitator should be able to close/lock a voting session so no more votes can be cast. Add a PATCH /api/sessions/:code/close endpoint that marks the session as closed. Once closed, the Cast Votes endpoint should reject new votes with a clear error message. The results page should show a "Voting Closed" badge. The facilitator should also be able to reopen a session if needed via PATCH /api/sessions/:code/reopen.</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
@@ -648,24 +719,32 @@ npm start</code></pre>
   </div>
 
   <div class="step" data-step="2">
+    <h4>Review the spec in VS Code</h4>
+    <p><strong>In VS Code</strong>, open the generated spec from the Explorer panel. Use <code>Ctrl+Shift+V</code> to preview the Markdown.</p>
+  </div>
+
+  <div class="step" data-step="3">
     <h4>Clarify</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
     <div class="code-block">
       <pre><code>/speckit.clarify</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
   </div>
 
-  <div class="step" data-step="3">
+  <div class="step" data-step="4">
     <h4>Plan</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
     <div class="code-block">
       <pre><code>/speckit.plan</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
+    <p><strong>In VS Code</strong>, review the generated plan and tasks.</p>
   </div>
 
-  <div class="step" data-step="4">
+  <div class="step" data-step="5">
     <h4>Implement and test</h4>
-    <p>Let SpecKit implement the tasks, then test closing and reopening a session.</p>
+    <p><strong>In the Copilot CLI terminal</strong>, let SpecKit implement the tasks. Then <strong>in a separate terminal</strong> (<code>Ctrl+Shift+`</code> in VS Code), test closing and reopening a session.</p>
   </div>
 
   <details>
@@ -695,6 +774,7 @@ npm start</code></pre>
 
   <div class="step" data-step="1">
     <h4>Specify the feature</h4>
+    <p><strong>In the Copilot CLI terminal</strong>, run <code>/speckit.specify</code> with the prompt below:</p>
     <div class="code-block">
       <pre><code>Create an "Export Results" feature for the $100 Test app. Add the ability to download the voting results as a CSV file. The CSV should include columns: Rank, Item Name, Total Dollars, Average Dollars, Percentage of Budget, Number of Votes. Include a GET /api/sessions/:code/results/export endpoint that returns the CSV with appropriate Content-Type and Content-Disposition headers. Add a "Download CSV" button to the results dashboard page.</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
@@ -702,24 +782,32 @@ npm start</code></pre>
   </div>
 
   <div class="step" data-step="2">
+    <h4>Review the spec in VS Code</h4>
+    <p><strong>In VS Code</strong>, open the generated spec from the Explorer panel. Use <code>Ctrl+Shift+V</code> to preview the Markdown.</p>
+  </div>
+
+  <div class="step" data-step="3">
     <h4>Clarify</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
     <div class="code-block">
       <pre><code>/speckit.clarify</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
   </div>
 
-  <div class="step" data-step="3">
+  <div class="step" data-step="4">
     <h4>Plan</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
     <div class="code-block">
       <pre><code>/speckit.plan</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
+    <p><strong>In VS Code</strong>, review the generated plan and tasks.</p>
   </div>
 
-  <div class="step" data-step="4">
+  <div class="step" data-step="5">
     <h4>Implement and test</h4>
-    <p>Let SpecKit implement the tasks, then test the CSV download by visiting <code>/api/sessions/YOUR_CODE/results/export</code>.</p>
+    <p><strong>In the Copilot CLI terminal</strong>, let SpecKit implement the tasks. Then <strong>in a separate terminal</strong> (<code>Ctrl+Shift+`</code> in VS Code), test the CSV download by visiting <code>/api/sessions/YOUR_CODE/results/export</code> in the browser.</p>
   </div>
 
   <details>
