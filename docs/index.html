@@ -522,19 +522,31 @@ npm start</code></pre>
   <p>Build a results dashboard that shows aggregated voting data with a visual bar chart. This is the "wow" feature — the missing piece that brings The $100 Test to life.</p>
 
   <div class="step" data-step="1">
-    <h4>Start Copilot CLI</h4>
-    <p>In the VS Code terminal (<code>Ctrl+`</code>), start a Copilot CLI session:</p>
+    <h4>Start Copilot CLI with the recommended model</h4>
+    <p>In the VS Code terminal (<code>Ctrl+`</code>), start a Copilot CLI session with the <strong>Claude Sonnet 4</strong> model — it's the best balance of speed and quality for this workshop:</p>
     <div class="code-block">
-      <pre><code>copilot</code></pre>
+      <pre><code>copilot --model claude-sonnet-4</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
     <p>You should see the Copilot CLI prompt appear, ready for commands.</p>
+    <details>
+      <summary>Why Claude Sonnet 4?</summary>
+      <div class="details-content">
+        <p>For this workshop, we want <strong>fast responses</strong> during the interactive session. The $100 Test is a straightforward Node.js/Express app — it doesn't need the most powerful model.</p>
+        <ul>
+          <li><strong>Claude Sonnet 4</strong> (recommended) — Fast, great for this complexity level. Best for a live workshop where you don't want to wait.</li>
+          <li><strong>GPT-5.1</strong> — Also fast and capable. Good alternative if you prefer OpenAI models.</li>
+          <li><strong>Claude Opus 4.6</strong> — Most capable but slower. Use if you want the highest quality output and don't mind waiting.</li>
+        </ul>
+        <p style="margin-top:0.5rem">You can change models anytime by restarting Copilot CLI with a different <code>--model</code> flag.</p>
+      </div>
+    </details>
     <details>
       <summary>Having trouble starting Copilot CLI?</summary>
       <div class="details-content">
         <ul>
           <li>Make sure it's installed: <code>copilot --version</code></li>
-          <li>If not found, install it: <code>winget install --id GitHub.Copilot</code> then reopen your terminal</li>
+          <li>If not found, install it: <code>npm install -g @github/copilot</code></li>
           <li>If not authenticated, run <code>copilot login</code></li>
         </ul>
       </div>
