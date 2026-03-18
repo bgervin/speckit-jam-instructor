@@ -681,8 +681,13 @@ npm start</code></pre>
       <div class="details-content">
         <h4>Would you start building a house without a task list?</h4>
         <p>When you "vibe code," the AI decides on the fly what to build and in what order. Sometimes it works. Often it misses things, builds in the wrong order, or creates code that contradicts itself.</p>
-        <p><code>/speckit.tasks</code> creates a <strong>structured checklist</strong> derived from the plan. Each task has clear acceptance criteria. The AI works through them methodically during implementation — and you can <strong>watch the tasks get checked off</strong> in real time.</p>
-        <p style="margin-top:0.5rem"><strong>💡 Try this:</strong> Open <code>tasks.md</code> in VS Code now and keep it visible. You'll see it update as implementation progresses in the next step.</p>
+        <p><code>/speckit.tasks</code> creates a <strong>structured checklist</strong> derived from the plan. Each task has clear acceptance criteria. But here's the powerful part — it also determines:</p>
+        <ul style="margin: 0.5rem 0 0 1rem;">
+          <li><strong>Sequential order:</strong> Which tasks must happen first (e.g., data model before API, API before UI)</li>
+          <li><strong>Parallel opportunities:</strong> Which tasks are independent and could be worked on concurrently</li>
+          <li><strong>Dependencies:</strong> If task B depends on task A's output, that's captured explicitly</li>
+        </ul>
+        <p style="margin-top:0.5rem">In a team setting, this task breakdown becomes your <strong>work assignment plan</strong> — you can split parallel tasks across developers. Even with AI doing the work, understanding the dependency graph means you know what's safe to change independently.</p>
       </div>
     </details>
   </div>
