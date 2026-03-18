@@ -6,7 +6,7 @@ Hi! 👋 You're signed up for the **SpecKit Hands-on Lab** at the AI Forward ses
 
 ## What You'll Build
 
-**The $100 Test** — a web app for teams to run prioritization exercises using the well-known "$100 voting" technique. You'll use **SpecKit + GitHub Copilot CLI** to add features to an existing app, experiencing spec-driven development firsthand.
+**The $100 Test** — a web app for teams to run prioritization exercises using the well-known "$100 voting" technique. You'll use **SpecKit + Copilot CLI** to add features to an existing app, experiencing spec-driven development firsthand.
 
 ---
 
@@ -16,26 +16,46 @@ Hi! 👋 You're signed up for the **SpecKit Hands-on Lab** at the AI Forward ses
 - You need a GitHub account with **Copilot access**
 - Verify by visiting [github.com/settings/copilot](https://github.com/settings/copilot)
 
-### 2. GitHub CLI + Copilot CLI
+### 2. Git
 ```bash
-# Install GitHub CLI: https://cli.github.com/
-gh auth login
-gh extension install github/gh-copilot
-
-# Verify
-ghcs --version
+winget install --id Git.Git
+# Close and reopen your terminal, then:
+git --version
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
 ```
 
-### 3. VS Code
-- Download from [code.visualstudio.com](https://code.visualstudio.com/)
-
-### 4. Node.js (v18 or later)
+### 3. GitHub CLI
 ```bash
-# Download from https://nodejs.org/
-node --version   # Should be 18.x or higher
+winget install --id GitHub.cli
+# Close and reopen your terminal, then:
+gh auth login    # Select GitHub.com, HTTPS, log in via browser
+gh --version
 ```
 
-### 5. Fork & Clone the Starter Repo
+### 4. VS Code
+```bash
+winget install --id Microsoft.VisualStudioCode
+# Close and reopen your terminal, then:
+code --version
+```
+
+### 5. Node.js 20 LTS
+```bash
+winget install --id OpenJS.NodeJS.20
+# Close and reopen your terminal, then:
+node --version   # Should be v20.x or higher
+npm --version
+```
+
+### 6. Copilot CLI
+```bash
+npm install -g @githubnext/copilot-cli
+copilot login
+copilot --version
+```
+
+### 7. Fork & Clone the Starter Repo
 ```bash
 # 1. Fork the repo at https://github.com/bgervin/speckit-jam-starter
 # 2. Clone YOUR fork:
@@ -44,7 +64,7 @@ cd speckit-jam-starter
 
 # 3. Install dependencies and verify it works:
 npm install
-npm test          # Should see 25 tests passing
+npm test          # Should see 30 tests passing
 npm start         # Should see "The $100 Test is running at http://localhost:3000"
 ```
 
