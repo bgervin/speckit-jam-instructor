@@ -219,6 +219,14 @@
     .checklist li { padding: 0.5rem 0; padding-left: 1.75rem; position: relative; }
     .checklist li::before { content: '☐'; position: absolute; left: 0; font-size: 1.1rem; }
 
+    /* While you wait blocks */
+    details.wait-block { margin: 0.75rem 0; border: 1px dashed #c4b5fd; border-radius: 8px; background: #faf5ff; }
+    details.wait-block summary { background: #faf5ff; color: #7c3aed; padding: 0.6rem 1rem; font-size: 0.9rem; }
+    details.wait-block summary::before { content: '⏳'; }
+    details.wait-block[open] summary { border-bottom: 1px dashed #c4b5fd; }
+    details.wait-block .details-content { font-size: 0.9rem; color: #4c1d95; }
+    details.wait-block .details-content h4 { font-size: 0.95rem; color: #6d28d9; margin-bottom: 0.5rem; }
+
     /* Responsive */
     @media (max-width: 640px) {
       .hero h1 { font-size: 1.8rem; }
@@ -579,6 +587,16 @@ npm start</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
     <p>Wait for SpecKit to finish generating the spec. You'll see it create a new file in the <code>specs/</code> folder.</p>
+    <details class="wait-block">
+      <summary>While you wait — Why specify instead of just prompting?</summary>
+      <div class="details-content">
+        <h4>Vibe coding: "Build me a results page"</h4>
+        <p>When you prompt an AI directly, your requirements live only in the chat window. Close the tab and they're gone. Next time someone asks "what was the spec for the results page?" — there's no answer.</p>
+        <h4>Spec-driven: /speckit.specify</h4>
+        <p>SpecKit captures your intent as a <strong>structured spec.md file in your repo</strong>. It's versioned, diffable, and reviewable. It becomes the <em>single source of truth</em> for what this feature does — not your chat history.</p>
+        <p style="margin-top:0.5rem"><strong>Think of it this way:</strong> you wouldn't deploy code that only existed in a chat window. Why would you do that with your requirements?</p>
+      </div>
+    </details>
   </div>
 
   <div class="step" data-step="3">
@@ -611,6 +629,15 @@ npm start</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
     <p>Answer SpecKit's questions to resolve any ambiguities. This is where the spec gets sharper.</p>
+    <details class="wait-block">
+      <summary>While you wait — Why clarify matters</summary>
+      <div class="details-content">
+        <h4>The #1 source of bugs? Ambiguity.</h4>
+        <p>Most bugs don't come from bad code — they come from <strong>unclear requirements</strong>. "Show the results" sounds obvious, but: What if nobody voted? What order? Percentages of what? Rounded how?</p>
+        <p><code>/speckit.clarify</code> forces these questions <em>before</em> a line of code is written. In traditional development, these ambiguities surface during code review or QA — weeks later, at much higher cost.</p>
+        <p style="margin-top:0.5rem"><strong>💡 Fun fact:</strong> Studies show that fixing a requirements bug after coding costs 10-100x more than catching it during specification.</p>
+      </div>
+    </details>
   </div>
 
   <div class="step" data-step="5">
@@ -620,6 +647,21 @@ npm start</code></pre>
       <pre><code>/speckit.plan</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
+    <details class="wait-block">
+      <summary>While you wait — Plan mode vs. SpecKit planning</summary>
+      <div class="details-content">
+        <h4>Copilot has a "plan mode" — how is this different?</h4>
+        <p>Plan mode in Copilot Chat creates a one-time plan in the conversation. It's useful, but ephemeral — it disappears when you close the chat.</p>
+        <p><code>/speckit.plan</code> generates a <strong>persistent plan.md file</strong> in your spec folder. It includes:</p>
+        <ul style="margin: 0.5rem 0 0 1rem;">
+          <li>Technical approach and architecture decisions</li>
+          <li>Research notes with rejected alternatives</li>
+          <li>Data models and API contracts</li>
+          <li>A constitution compliance check</li>
+        </ul>
+        <p style="margin-top:0.5rem">This plan is <strong>reviewable by your team</strong> before any code is written. Imagine sending a PR with the plan before the implementation — that's what SpecKit enables.</p>
+      </div>
+    </details>
   </div>
 
   <div class="step" data-step="6">
@@ -634,6 +676,15 @@ npm start</code></pre>
       <pre><code>/speckit.tasks</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
+    <details class="wait-block">
+      <summary>While you wait — Why tasks before implementation?</summary>
+      <div class="details-content">
+        <h4>Would you start building a house without a task list?</h4>
+        <p>When you "vibe code," the AI decides on the fly what to build and in what order. Sometimes it works. Often it misses things, builds in the wrong order, or creates code that contradicts itself.</p>
+        <p><code>/speckit.tasks</code> creates a <strong>structured checklist</strong> derived from the plan. Each task has clear acceptance criteria. The AI works through them methodically during implementation — and you can <strong>watch the tasks get checked off</strong> in real time.</p>
+        <p style="margin-top:0.5rem"><strong>💡 Try this:</strong> Open <code>tasks.md</code> in VS Code now and keep it visible. You'll see it update as implementation progresses in the next step.</p>
+      </div>
+    </details>
   </div>
 
   <div class="step" data-step="8">
@@ -654,6 +705,19 @@ npm start</code></pre>
       <pre><code>/speckit.implement</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
+    <details class="wait-block">
+      <summary>While you wait — Watch the magic happen</summary>
+      <div class="details-content">
+        <h4>This is the longest step — here's what to do while it runs:</h4>
+        <ul style="margin: 0.5rem 0 0 1rem;">
+          <li><strong>Watch tasks.md:</strong> Open it in VS Code and watch tasks get checked off as the AI completes each one. This is your real-time progress tracker.</li>
+          <li><strong>Watch the Explorer panel:</strong> New files will appear in <code>src/</code> and <code>tests/</code> as code is generated.</li>
+          <li><strong>Watch the terminal:</strong> You'll see the AI reading specs, writing code, running tests — all guided by the plan you just reviewed.</li>
+        </ul>
+        <h4 style="margin-top:0.75rem">What's different from "just asking the AI to build it"?</h4>
+        <p>Right now the AI is implementing against a <strong>spec, plan, and task list</strong> that you reviewed. It's not guessing what you want — it's executing against documented requirements. If something goes wrong, you can point to the spec and say "this doesn't match." Try doing that with a chat prompt you typed 20 minutes ago.</p>
+      </div>
+    </details>
     <div class="callout info">
       <strong>💡 Tip:</strong> Watch the terminal as SpecKit works, and keep VS Code open alongside — you'll see new files appear in the Explorer panel in real time. It's creating code that matches your spec — not just "vibing" without requirements.
     </div>
