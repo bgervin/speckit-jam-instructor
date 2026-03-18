@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The $100 Test — SpecKit Hands-on Lab</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --info-bg: #eff6ff;
+      --info-text: #1e40af;
+      --warn-bg: #fffbeb;
+      --warn-text: #92400e;
+      --code-bg: #1e293b;
+      --code-text: #e2e8f0;
+      --lab-color: #4f46e5;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .hero {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .hero .subtitle { font-size: 1.2rem; opacity: 0.9; margin-bottom: 1rem; }
+    .hero .badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.9rem; }
+
+    /* Container */
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+    /* Table of Contents */
+    .toc {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .toc h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .toc ol { padding-left: 1.5rem; }
+    .toc li { margin-bottom: 0.5rem; }
+    .toc a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* Section cards */
+    .section {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .section h3 { font-size: 1.15rem; margin: 1.5rem 0 0.75rem; color: var(--text); }
+
+    /* Lab headers */
+    .lab-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 3px solid var(--lab-color);
+    }
+    .lab-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--lab-color);
+      color: white;
+      border-radius: 12px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .lab-header h2 { border: none; padding: 0; margin: 0; }
+    .lab-header .lab-tag {
+      font-size: 0.75rem;
+      background: var(--success-bg);
+      color: var(--success);
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .lab-header .lab-tag.stretch {
+      background: var(--warn-bg);
+      color: var(--warn-text);
+    }
+
+    /* Steps */
+    .step {
+      border-left: 3px solid var(--border);
+      padding: 0.75rem 0 0.75rem 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .step::before {
+      content: attr(data-step);
+      position: absolute;
+      left: -14px;
+      top: 0.75rem;
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .step h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .step p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.5rem; }
+
+    /* Code blocks with copy button */
+    .code-block {
+      position: relative;
+      margin: 0.75rem 0;
+    }
+    .code-block pre {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 1rem 3.5rem 1rem 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #94a3b8;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.2); color: white; }
+    .copy-btn.copied { background: var(--success); color: white; border-color: var(--success); }
+
+    /* Inline code */
+    code { background: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.9em; color: #be185d; }
+    pre code { background: none; padding: 0; color: inherit; }
+
+    /* Info/warning boxes */
+    .callout {
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .callout.info { background: var(--info-bg); color: var(--info-text); border-left: 4px solid #3b82f6; }
+    .callout.warn { background: var(--warn-bg); color: var(--warn-text); border-left: 4px solid #f59e0b; }
+    .callout.success { background: var(--success-bg); color: #166534; border-left: 4px solid var(--success); }
+    .callout strong { display: block; margin-bottom: 0.25rem; }
+
+    /* Details / Learn More */
+    details {
+      margin: 1rem 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    details summary {
+      padding: 0.75rem 1rem;
+      background: #f8fafc;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--primary);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    details summary::before { content: '📘'; }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] summary { border-bottom: 1px solid var(--border); }
+    details .details-content { padding: 1rem; color: var(--text-muted); font-size: 0.95rem; }
+    details .details-content a { color: var(--primary); }
+    details .details-content ul { padding-left: 1.5rem; margin-top: 0.5rem; }
+    details .details-content li { margin-bottom: 0.3rem; }
+
+    /* Checklist */
+    .checklist { list-style: none; padding: 0; }
+    .checklist li { padding: 0.5rem 0; padding-left: 1.75rem; position: relative; }
+    .checklist li::before { content: '☐'; position: absolute; left: 0; font-size: 1.1rem; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.8rem; }
+      .container { padding: 1rem; }
+      .section, .toc { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <h1>💰 The $100 Test</h1>
+  <p class="subtitle">SpecKit + GitHub Copilot CLI — Hands-on Lab</p>
+  <span class="badge">AI Forward Session</span>
+</div>
+
+<div class="container">
+
+<!-- ============ TABLE OF CONTENTS ============ -->
+<div class="toc">
+  <h2>📋 Table of Contents</h2>
+  <ol>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#lab1">Lab 1: View Results Dashboard</a> ⭐ Primary</li>
+    <li><a href="#lab2">Lab 2: Share Session / Invite Link</a> 🔥 Stretch</li>
+    <li><a href="#lab3">Lab 3: Close Session &amp; Lock Voting</a> 🔥 Stretch</li>
+    <li><a href="#lab4">Lab 4: Export Results as CSV</a> 🔥 Stretch</li>
+    <li><a href="#wrapup">Wrap-up: Why SpecKit?</a></li>
+    <li><a href="#resources">Additional Resources</a></li>
+  </ol>
+</div>
+
+<!-- ============ PREREQUISITES ============ -->
+<div class="section" id="prerequisites">
+  <h2>✅ Prerequisites</h2>
+  <p>Make sure you have the following ready <strong>before the session starts</strong>:</p>
+  <ul class="checklist">
+    <li><strong>GitHub account</strong> with Copilot access</li>
+    <li><strong>GitHub Copilot CLI</strong> installed and authenticated (<code>ghcs --version</code>)</li>
+    <li><strong>VS Code</strong> installed</li>
+    <li><strong>Node.js 18+</strong> installed (<code>node --version</code>)</li>
+    <li><strong>Git</strong> installed (<code>git --version</code>)</li>
+  </ul>
+
+  <details>
+    <summary>How to install GitHub Copilot CLI</summary>
+    <div class="details-content">
+      <ol>
+        <li>Install the <a href="https://cli.github.com/" target="_blank">GitHub CLI</a> if you haven't already</li>
+        <li>Run <code>gh auth login</code> to authenticate</li>
+        <li>Install the Copilot extension: <code>gh extension install github/gh-copilot</code></li>
+        <li>Verify with <code>ghcs --version</code></li>
+      </ol>
+    </div>
+  </details>
+</div>
+
+<!-- ============ GETTING STARTED ============ -->
+<div class="section" id="getting-started">
+  <h2>🚀 Getting Started</h2>
+
+  <div class="step" data-step="1">
+    <h4>Fork the starter repo</h4>
+    <p>Go to <a href="https://github.com/bgervin/speckit-jam-starter" target="_blank">github.com/bgervin/speckit-jam-starter</a> and click <strong>Fork</strong> to create your own copy.</p>
+    <div class="callout info">
+      <strong>💡 Why fork?</strong>
+      Forking gives you your own copy of the repo where you can freely experiment. Your changes won't affect anyone else's work.
+    </div>
+  </div>
+
+  <div class="step" data-step="2">
+    <h4>Clone your fork</h4>
+    <div class="code-block">
+      <pre><code>git clone https://github.com/YOUR_USERNAME/speckit-jam-starter.git
+cd speckit-jam-starter</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="3">
+    <h4>Install dependencies and start the app</h4>
+    <div class="code-block">
+      <pre><code>npm install
+npm start</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+    <p>Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> — you should see The $100 Test landing page.</p>
+  </div>
+
+  <div class="step" data-step="4">
+    <h4>Try it out!</h4>
+    <p>Create a session, then use the session code to cast a vote. Notice there's <strong>no way to see the results</strong> yet — that's what you'll build in Lab 1! 🎯</p>
+  </div>
+
+  <div class="step" data-step="5">
+    <h4>Run the existing tests</h4>
+    <div class="code-block">
+      <pre><code>npm test</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+    <p>You should see <strong>25 tests passing</strong>. These cover the pre-built Create Session and Cast Votes features.</p>
+  </div>
+
+  <div class="step" data-step="6">
+    <h4>Explore the repo structure</h4>
+    <p>Take a quick look at:</p>
+    <ul style="margin-left:1rem;margin-top:0.5rem">
+      <li><code>constitution.md</code> — the app's identity and standards</li>
+      <li><code>specs/001-create-session/spec.md</code> — a fully written spec</li>
+      <li><code>specs/002-cast-votes/spec.md</code> — another fully written spec</li>
+      <li><code>src/</code> — the implementation</li>
+    </ul>
+    <p style="margin-top:0.5rem">This is what a <strong>spec-driven codebase</strong> looks like. Now you'll add to it!</p>
+  </div>
+</div>
+
+<!-- ============ LAB 1 ============ -->
+<div class="section" id="lab1">
+  <div class="lab-header">
+    <div class="lab-number">1</div>
+    <div>
+      <h2>View Results Dashboard</h2>
+      <span class="lab-tag">Primary Exercise</span>
+    </div>
+  </div>
+
+  <p>Build a results dashboard that shows aggregated voting data with a visual bar chart. This is the "wow" feature — the missing piece that brings The $100 Test to life.</p>
+
+  <div class="step" data-step="1">
+    <h4>Specify the feature with SpecKit</h4>
+    <p>Open the GitHub Copilot CLI and run the <code>/speckit.specify</code> command with the following prompt:</p>
+    <div class="code-block">
+      <pre><code>Create a "View Results" feature for the $100 Test app. Given a session code, display the aggregated voting results as a dashboard. Show a ranked list of items sorted by total dollars received (highest first). For each item, display: total dollars, average dollars per voter, and percentage of total budget. Show the total number of participants who voted. Include a simple bar chart visualization using HTML/CSS (no chart library needed). Only show results if at least one vote has been cast. Highlight the top-funded item. Include a REST API endpoint GET /api/sessions/:code/results and a web page at /results/:code.</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="2">
+    <h4>Review the generated spec</h4>
+    <p>SpecKit will create <code>specs/003-view-results/spec.md</code>. Open it and review:</p>
+    <ul style="margin-left:1rem;margin-top:0.5rem">
+      <li>Does it capture all the requirements?</li>
+      <li>Are the API response shapes well-defined?</li>
+      <li>Are edge cases covered (no votes, single voter, etc.)?</li>
+    </ul>
+  </div>
+
+  <div class="step" data-step="3">
+    <h4>Clarify and refine the spec</h4>
+    <p>Run the clarify command to let SpecKit ask questions and tighten the spec:</p>
+    <div class="code-block">
+      <pre><code>/speckit.clarify</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+    <p>Answer SpecKit's questions to resolve any ambiguities. This is where the spec gets sharper.</p>
+  </div>
+
+  <div class="step" data-step="4">
+    <h4>Create the implementation plan</h4>
+    <div class="code-block">
+      <pre><code>/speckit.plan</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+    <p>SpecKit generates a plan with tasks. Review the task breakdown — does it make sense?</p>
+  </div>
+
+  <div class="step" data-step="5">
+    <h4>Review the tasks</h4>
+    <p>Look at the generated tasks. You should see things like:</p>
+    <ul style="margin-left:1rem;margin-top:0.5rem">
+      <li>Create results aggregation logic</li>
+      <li>Add the API endpoint</li>
+      <li>Build the results HTML page</li>
+      <li>Write tests</li>
+    </ul>
+  </div>
+
+  <div class="step" data-step="6">
+    <h4>Implement!</h4>
+    <p>Let SpecKit implement each task. It will generate source code and tests based on the spec and plan.</p>
+    <div class="callout info">
+      <strong>💡 Tip:</strong> Watch the terminal as SpecKit works. It's creating code that matches your spec — not just "vibing" without requirements.
+    </div>
+  </div>
+
+  <div class="step" data-step="7">
+    <h4>Test it!</h4>
+    <p>Run the tests to make sure everything works:</p>
+    <div class="code-block">
+      <pre><code>npm test</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+    <p>Then restart the server and visit <code>/results/YOUR_SESSION_CODE</code> to see your dashboard!</p>
+    <div class="code-block">
+      <pre><code>npm start</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="callout success">
+    <strong>🎉 Checkpoint!</strong>
+    You just built a complete feature using the SpecKit workflow: specify → clarify → plan → implement. The spec, plan, and code are all in your repo as source-controlled artifacts.
+  </div>
+
+  <details>
+    <summary>Learn More: What is spec-driven development?</summary>
+    <div class="details-content">
+      <p>Spec-driven development treats <strong>natural language requirements as source code</strong>. Instead of writing requirements in a wiki or ticket that gets lost, SpecKit keeps specs in your repo alongside the code they describe.</p>
+      <ul>
+        <li><strong>Specs are durable</strong> — they live in the repo, not in someone's head</li>
+        <li><strong>Specs are versioned</strong> — you can see how requirements evolved over time</li>
+        <li><strong>Specs are reviewable</strong> — teammates can PR-review your requirements</li>
+        <li><strong>Specs drive implementation</strong> — the AI uses your spec as the source of truth</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!-- ============ LAB 2 ============ -->
+<div class="section" id="lab2">
+  <div class="lab-header">
+    <div class="lab-number">2</div>
+    <div>
+      <h2>Share Session / Invite Link</h2>
+      <span class="lab-tag stretch">Stretch Goal</span>
+    </div>
+  </div>
+
+  <p>Build a shareable voting page so participants can join and vote via a direct link — no need to manually enter a session code.</p>
+
+  <div class="step" data-step="1">
+    <h4>Specify the feature</h4>
+    <div class="code-block">
+      <pre><code>Create a "Share Session" feature for the $100 Test app. After a facilitator creates a session, generate a shareable URL that participants can use to join and vote directly. The URL should include the session code (e.g., /vote/:code). Create a landing page at that URL that shows the session title, the list of items, and a form where participants enter their name and allocate their $100. The page should show a running total so voters can see they've allocated exactly $100 before submitting. Include form validation that prevents submission unless the total equals $100.</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="2">
+    <h4>Clarify</h4>
+    <div class="code-block">
+      <pre><code>/speckit.clarify</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="3">
+    <h4>Plan</h4>
+    <div class="code-block">
+      <pre><code>/speckit.plan</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="4">
+    <h4>Implement and test</h4>
+    <p>Let SpecKit implement the tasks, then run <code>npm test</code> and visit <code>/vote/YOUR_CODE</code> in the browser.</p>
+  </div>
+
+  <details>
+    <summary>Learn More: Building shareable UIs</summary>
+    <div class="details-content">
+      <p>A shareable link is one of the most impactful UX improvements you can make. It turns a multi-step flow ("open app → find session → enter code") into a single click.</p>
+      <ul>
+        <li>The URL itself becomes the invitation</li>
+        <li>Form validation with a running total provides real-time feedback</li>
+        <li>This pattern is common in survey tools, polls, and collaborative apps</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!-- ============ LAB 3 ============ -->
+<div class="section" id="lab3">
+  <div class="lab-header">
+    <div class="lab-number">3</div>
+    <div>
+      <h2>Close Session &amp; Lock Voting</h2>
+      <span class="lab-tag stretch">Stretch Goal</span>
+    </div>
+  </div>
+
+  <p>Add the ability for a facilitator to close a session so no more votes can be cast, and optionally reopen it.</p>
+
+  <div class="step" data-step="1">
+    <h4>Specify the feature</h4>
+    <div class="code-block">
+      <pre><code>Create a "Close Session" feature for the $100 Test app. The facilitator should be able to close/lock a voting session so no more votes can be cast. Add a PATCH /api/sessions/:code/close endpoint that marks the session as closed. Once closed, the Cast Votes endpoint should reject new votes with a clear error message. The results page should show a "Voting Closed" badge. The facilitator should also be able to reopen a session if needed via PATCH /api/sessions/:code/reopen.</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="2">
+    <h4>Clarify</h4>
+    <div class="code-block">
+      <pre><code>/speckit.clarify</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="3">
+    <h4>Plan</h4>
+    <div class="code-block">
+      <pre><code>/speckit.plan</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="4">
+    <h4>Implement and test</h4>
+    <p>Let SpecKit implement the tasks, then test closing and reopening a session.</p>
+  </div>
+
+  <details>
+    <summary>Learn More: State management in APIs</summary>
+    <div class="details-content">
+      <p>Adding a "closed" state to sessions introduces <strong>state management</strong> — a pattern you'll see everywhere in real-world apps (drafts, published, archived, etc.).</p>
+      <ul>
+        <li>State transitions should be explicit (open → closed → reopened)</li>
+        <li>Other endpoints need to respect the current state</li>
+        <li>The UI should reflect the state clearly</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!-- ============ LAB 4 ============ -->
+<div class="section" id="lab4">
+  <div class="lab-header">
+    <div class="lab-number">4</div>
+    <div>
+      <h2>Export Results as CSV</h2>
+      <span class="lab-tag stretch">Stretch Goal</span>
+    </div>
+  </div>
+
+  <p>Add the ability to download voting results as a CSV file for further analysis in Excel or Google Sheets.</p>
+
+  <div class="step" data-step="1">
+    <h4>Specify the feature</h4>
+    <div class="code-block">
+      <pre><code>Create an "Export Results" feature for the $100 Test app. Add the ability to download the voting results as a CSV file. The CSV should include columns: Rank, Item Name, Total Dollars, Average Dollars, Percentage of Budget, Number of Votes. Include a GET /api/sessions/:code/results/export endpoint that returns the CSV with appropriate Content-Type and Content-Disposition headers. Add a "Download CSV" button to the results dashboard page.</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="2">
+    <h4>Clarify</h4>
+    <div class="code-block">
+      <pre><code>/speckit.clarify</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="3">
+    <h4>Plan</h4>
+    <div class="code-block">
+      <pre><code>/speckit.plan</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="4">
+    <h4>Implement and test</h4>
+    <p>Let SpecKit implement the tasks, then test the CSV download by visiting <code>/api/sessions/YOUR_CODE/results/export</code>.</p>
+  </div>
+
+  <details>
+    <summary>Learn More: File generation in web apps</summary>
+    <div class="details-content">
+      <p>Generating downloadable files from web APIs is a common pattern. Key considerations:</p>
+      <ul>
+        <li>Set <code>Content-Type: text/csv</code> for CSV files</li>
+        <li>Use <code>Content-Disposition: attachment; filename="results.csv"</code> to trigger download</li>
+        <li>Escape commas and quotes in CSV values</li>
+        <li>This pattern extends to PDFs, Excel files, and other export formats</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!-- ============ WRAP-UP ============ -->
+<div class="section" id="wrapup">
+  <h2>🎯 Wrap-up: Why SpecKit?</h2>
+
+  <p>You just built features using the SpecKit workflow. Here's why this matters:</p>
+
+  <div class="callout info" style="margin-top:1rem">
+    <strong>English is the new programming language.</strong>
+    With AI coding assistants, describing what you want in plain English is how software gets built. But without SpecKit, those English requirements are ephemeral — they exist only in chat history.
+  </div>
+
+  <h3>SpecKit vs. "Vibe Coding"</h3>
+  <table style="width:100%;border-collapse:collapse;margin:1rem 0">
+    <tr style="border-bottom:2px solid var(--border)">
+      <th style="text-align:left;padding:0.75rem">Vibe Coding</th>
+      <th style="text-align:left;padding:0.75rem">Spec-Driven (SpecKit)</th>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:0.75rem">Requirements in chat history</td>
+      <td style="padding:0.75rem">Requirements in <code>specs/</code> folder</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:0.75rem">Not reproducible</td>
+      <td style="padding:0.75rem">Fully reproducible</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:0.75rem">Can't be code-reviewed</td>
+      <td style="padding:0.75rem">PR-reviewable specs</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:0.75rem">No audit trail</td>
+      <td style="padding:0.75rem">Full git history</td>
+    </tr>
+    <tr>
+      <td style="padding:0.75rem">Works for prototypes</td>
+      <td style="padding:0.75rem">Works for production</td>
+    </tr>
+  </table>
+
+  <div class="callout success">
+    <strong>What you built today:</strong>
+    Features with specs, plans, tests, and implementations — all source-controlled in your repo. This is how PMs and engineers collaborate in the AI era.
+  </div>
+</div>
+
+<!-- ============ ADDITIONAL RESOURCES ============ -->
+<div class="section" id="resources">
+  <h2>📚 Additional Resources</h2>
+  <ul style="list-style:none;padding:0">
+    <li style="padding:0.5rem 0">📖 <a href="https://github.com/github/speckit" target="_blank" style="color:var(--primary)">SpecKit Documentation</a></li>
+    <li style="padding:0.5rem 0">🤖 <a href="https://docs.github.com/en/copilot" target="_blank" style="color:var(--primary)">GitHub Copilot Documentation</a></li>
+    <li style="padding:0.5rem 0">💻 <a href="https://cli.github.com/" target="_blank" style="color:var(--primary)">GitHub CLI</a></li>
+    <li style="padding:0.5rem 0">📘 <a href="https://en.wikipedia.org/wiki/Cumulative_voting" target="_blank" style="color:var(--primary)">The $100 Test / Cumulative Voting (Wikipedia)</a></li>
+  </ul>
+</div>
+
+</div><!-- /container -->
+
+<!-- ============ COPY SCRIPT ============ -->
+<script>
+function copyCode(btn) {
+  const pre = btn.parentElement.querySelector('pre code');
+  const text = pre.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
