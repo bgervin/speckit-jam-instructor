@@ -525,10 +525,14 @@ npm start</code></pre>
     <h4>Start Copilot CLI with the recommended model</h4>
     <p>In the VS Code terminal (<code>Ctrl+`</code>), start a Copilot CLI session with the <strong>Claude Sonnet 4</strong> model — it's the best balance of speed and quality for this workshop:</p>
     <div class="code-block">
-      <pre><code>copilot --model claude-sonnet-4</code></pre>
+      <pre><code>copilot --model claude-sonnet-4 --yolo</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
     <p>You should see the Copilot CLI prompt appear, ready for commands.</p>
+    <div class="callout info">
+      <strong>💡 What does --yolo do?</strong>
+      It enables all permissions (file access, shell commands, URLs) so Copilot can work without asking you to approve each action. This is safe here — you're working in a forked workshop repo, not production code.
+    </div>
     <details>
       <summary>Why Claude Sonnet 4?</summary>
       <div class="details-content">
