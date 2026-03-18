@@ -590,12 +590,25 @@ npm start</code></pre>
       <pre><code>/speckit.plan</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
-    <p>SpecKit generates a plan with tasks. <strong>In VS Code</strong>, open the generated plan file and review the task breakdown — does it make sense?</p>
   </div>
 
   <div class="step" data-step="6">
-    <h4>Review the tasks</h4>
-    <p><strong>In VS Code</strong>, look at the generated tasks. You should see things like:</p>
+    <h4>Review the plan in VS Code</h4>
+    <p><strong>In VS Code</strong>, open the generated <code>plan.md</code> in the spec folder. Preview it with <code>Ctrl+Shift+V</code>. Review the approach — does the implementation strategy make sense?</p>
+  </div>
+
+  <div class="step" data-step="7">
+    <h4>Generate the tasks</h4>
+    <p><strong>In the Copilot CLI terminal</strong>, break the plan into actionable tasks:</p>
+    <div class="code-block">
+      <pre><code>/speckit.tasks</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="8">
+    <h4>Review the tasks in VS Code</h4>
+    <p><strong>In VS Code</strong>, open <code>tasks.md</code> in the spec folder. You should see a structured task list like:</p>
     <ul style="margin-left:1rem;margin-top:0.5rem">
       <li>Create results aggregation logic</li>
       <li>Add the API endpoint</li>
@@ -604,15 +617,24 @@ npm start</code></pre>
     </ul>
   </div>
 
-  <div class="step" data-step="7">
+  <div class="step" data-step="9">
     <h4>Implement!</h4>
     <p><strong>In the Copilot CLI terminal</strong>, let SpecKit implement each task. It will generate source code and tests based on the spec and plan.</p>
+    <div class="code-block">
+      <pre><code>/speckit.implement</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
     <div class="callout info">
       <strong>💡 Tip:</strong> Watch the terminal as SpecKit works, and keep VS Code open alongside — you'll see new files appear in the Explorer panel in real time. It's creating code that matches your spec — not just "vibing" without requirements.
     </div>
   </div>
 
-  <div class="step" data-step="8">
+  <div class="step" data-step="10">
+    <h4>Review task progress in VS Code</h4>
+    <p><strong>In VS Code</strong>, reopen <code>tasks.md</code> — you should see the tasks are now marked as completed. This is your implementation audit trail.</p>
+  </div>
+
+  <div class="step" data-step="11">
     <h4>Test it!</h4>
     <p><strong>In a separate terminal</strong> (open a new one with <code>Ctrl+Shift+`</code> in VS Code), run the tests to make sure everything works:</p>
     <div class="code-block">
@@ -628,7 +650,7 @@ npm start</code></pre>
 
   <div class="callout success">
     <strong>🎉 Checkpoint!</strong>
-    You just built a complete feature using the SpecKit workflow: specify → clarify → plan → implement. The spec, plan, and code are all in your repo as source-controlled artifacts.
+    You just built a complete feature using the SpecKit workflow: specify → clarify → plan → tasks → implement. The spec, plan, tasks, and code are all in your repo as source-controlled artifacts.
   </div>
 
   <details>
@@ -687,12 +709,39 @@ npm start</code></pre>
       <pre><code>/speckit.plan</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
-    <p><strong>In VS Code</strong>, review the generated plan and tasks.</p>
   </div>
 
   <div class="step" data-step="5">
-    <h4>Implement and test</h4>
-    <p><strong>In the Copilot CLI terminal</strong>, let SpecKit implement the tasks. Then <strong>in a separate terminal</strong> (<code>Ctrl+Shift+`</code> in VS Code), run <code>npm test</code> and visit <code>/vote/YOUR_CODE</code> in the browser.</p>
+    <h4>Review the plan in VS Code</h4>
+    <p><strong>In VS Code</strong>, open the generated <code>plan.md</code> and review the implementation approach.</p>
+  </div>
+
+  <div class="step" data-step="6">
+    <h4>Generate tasks</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
+    <div class="code-block">
+      <pre><code>/speckit.tasks</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="7">
+    <h4>Review tasks in VS Code</h4>
+    <p><strong>In VS Code</strong>, open <code>tasks.md</code> and review the task breakdown.</p>
+  </div>
+
+  <div class="step" data-step="8">
+    <h4>Implement</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
+    <div class="code-block">
+      <pre><code>/speckit.implement</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="9">
+    <h4>Review task progress and test</h4>
+    <p><strong>In VS Code</strong>, reopen <code>tasks.md</code> to see completed tasks. Then <strong>in a separate terminal</strong> (<code>Ctrl+Shift+`</code>), run <code>npm test</code> and visit <code>/vote/YOUR_CODE</code> in the browser.</p>
   </div>
 
   <details>
@@ -750,12 +799,39 @@ npm start</code></pre>
       <pre><code>/speckit.plan</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
-    <p><strong>In VS Code</strong>, review the generated plan and tasks.</p>
   </div>
 
   <div class="step" data-step="5">
-    <h4>Implement and test</h4>
-    <p><strong>In the Copilot CLI terminal</strong>, let SpecKit implement the tasks. Then <strong>in a separate terminal</strong> (<code>Ctrl+Shift+`</code> in VS Code), test closing and reopening a session.</p>
+    <h4>Review the plan in VS Code</h4>
+    <p><strong>In VS Code</strong>, open the generated <code>plan.md</code> and review the implementation approach.</p>
+  </div>
+
+  <div class="step" data-step="6">
+    <h4>Generate tasks</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
+    <div class="code-block">
+      <pre><code>/speckit.tasks</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="7">
+    <h4>Review tasks in VS Code</h4>
+    <p><strong>In VS Code</strong>, open <code>tasks.md</code> and review the task breakdown.</p>
+  </div>
+
+  <div class="step" data-step="8">
+    <h4>Implement</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
+    <div class="code-block">
+      <pre><code>/speckit.implement</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="9">
+    <h4>Review task progress and test</h4>
+    <p><strong>In VS Code</strong>, reopen <code>tasks.md</code> to see completed tasks. Then <strong>in a separate terminal</strong> (<code>Ctrl+Shift+`</code>), test closing and reopening a session.</p>
   </div>
 
   <details>
@@ -813,12 +889,39 @@ npm start</code></pre>
       <pre><code>/speckit.plan</code></pre>
       <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
     </div>
-    <p><strong>In VS Code</strong>, review the generated plan and tasks.</p>
   </div>
 
   <div class="step" data-step="5">
-    <h4>Implement and test</h4>
-    <p><strong>In the Copilot CLI terminal</strong>, let SpecKit implement the tasks. Then <strong>in a separate terminal</strong> (<code>Ctrl+Shift+`</code> in VS Code), test the CSV download by visiting <code>/api/sessions/YOUR_CODE/results/export</code> in the browser.</p>
+    <h4>Review the plan in VS Code</h4>
+    <p><strong>In VS Code</strong>, open the generated <code>plan.md</code> and review the implementation approach.</p>
+  </div>
+
+  <div class="step" data-step="6">
+    <h4>Generate tasks</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
+    <div class="code-block">
+      <pre><code>/speckit.tasks</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="7">
+    <h4>Review tasks in VS Code</h4>
+    <p><strong>In VS Code</strong>, open <code>tasks.md</code> and review the task breakdown.</p>
+  </div>
+
+  <div class="step" data-step="8">
+    <h4>Implement</h4>
+    <p><strong>In the Copilot CLI terminal:</strong></p>
+    <div class="code-block">
+      <pre><code>/speckit.implement</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="step" data-step="9">
+    <h4>Review task progress and test</h4>
+    <p><strong>In VS Code</strong>, reopen <code>tasks.md</code> to see completed tasks. Then <strong>in a separate terminal</strong> (<code>Ctrl+Shift+`</code>), test the CSV download by visiting <code>/api/sessions/YOUR_CODE/results/export</code> in the browser.</p>
   </div>
 
   <details>
