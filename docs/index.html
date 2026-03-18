@@ -269,29 +269,6 @@
     <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
       <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
         <span style="font-size: 1.1rem;">☐</span>
-        <strong>Copilot CLI</strong> installed and authenticated (<code>copilot --version</code>)
-      </div>
-      <details style="margin: 0.5rem 0 0 1.6rem; border: none;">
-        <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install Copilot CLI</summary>
-        <div class="details-content" style="padding: 0.75rem 0 0 0;">
-          <ol>
-            <li>Install via winget:
-              <div style="margin: 0.5rem 0; background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">
-                winget install --id GitHub.Copilot
-              </div>
-            </li>
-            <li>Close and reopen your terminal so the <code>copilot</code> command is available</li>
-            <li>Authenticate: <code>copilot login</code></li>
-            <li>Verify: <code>copilot --version</code></li>
-          </ol>
-          <p style="margin-top: 0.5rem;">📖 <a href="https://docs.github.com/en/copilot/how-tos/copilot-cli" target="_blank">Copilot CLI Docs</a></p>
-        </div>
-      </details>
-    </div>
-
-    <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
-      <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
-        <span style="font-size: 1.1rem;">☐</span>
         <strong>GitHub CLI</strong> installed and authenticated (<code>gh --version</code>)
       </div>
       <details style="margin: 0.5rem 0 0 1.6rem; border: none;">
@@ -357,6 +334,28 @@
             </li>
           </ol>
           <p style="margin-top: 0.5rem;">📖 <a href="https://nodejs.org/en/learn/getting-started/how-to-install-nodejs" target="_blank">Node.js Installation Guide</a></p>
+        </div>
+      </details>
+    </div>
+
+    <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+      <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
+        <span style="font-size: 1.1rem;">☐</span>
+        <strong>Copilot CLI</strong> installed and authenticated (<code>copilot --version</code>)
+      </div>
+      <details style="margin: 0.5rem 0 0 1.6rem; border: none;">
+        <summary style="background: none; padding: 0.25rem 0; font-size: 0.9rem;">How to install Copilot CLI</summary>
+        <div class="details-content" style="padding: 0.75rem 0 0 0;">
+          <ol>
+            <li>Install via npm (requires Node.js from the step above):
+              <div style="margin: 0.5rem 0; background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem;">
+                npm install -g @githubnext/copilot-cli
+              </div>
+            </li>
+            <li>Authenticate: <code>copilot login</code></li>
+            <li>Verify: <code>copilot --version</code></li>
+          </ol>
+          <p style="margin-top: 0.5rem;">📖 <a href="https://docs.github.com/en/copilot/how-tos/copilot-cli" target="_blank">Copilot CLI Docs</a></p>
         </div>
       </details>
     </div>
