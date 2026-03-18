@@ -7,7 +7,7 @@ Everything you need to run the **AI Forward SpecKit Hands-on Lab** using The $10
 | Repo | Purpose | Link |
 |---|---|---|
 | **speckit-jam-instructor** (this repo) | Instructor materials, HOL page, scripts | You're here |
-| **speckit-jam-starter** | Pre-built app that participants fork | [→ Starter Repo](https://github.com/bgervin/speckit-jam-starter) |
+| **speckit-jam-starter** | Pre-built app that participants fork | [→ Starter Repo](https://github.com/gim-home/speckit-jam-starter) |
 | **speckit-jam-participant** | Completed workshop (fork of starter) | [→ Participant Repo](../speckit-jam-participant) |
 
 ## 🌐 Hands-on Lab Page
