@@ -58,7 +58,7 @@ copilot --version
 ### 7. Fork & Clone the Starter Repo
 ```bash
 # 1. Fork the repo at https://github.com/bgervin/speckit-jam-starter
-#    (Backup if using _microsoft account: https://github.com/gim-home/speckit-jam-starter)
+#    (Backup if using _microsoft account: https://github.com/agency-microsoft/speckit-jam-starter)
 # 2. Clone YOUR fork:
 git clone https://github.com/YOUR_USERNAME/speckit-jam-starter.git
 cd speckit-jam-starter
