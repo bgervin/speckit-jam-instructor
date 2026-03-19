@@ -45,7 +45,60 @@
     .hero .badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.9rem; }
 
     /* Container */
-    .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem; margin-left: 280px; }
+
+    /* Side Navigation */
+    .sidenav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 100vh;
+      background: var(--card-bg);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 1rem 0;
+      z-index: 100;
+      scrollbar-width: thin;
+    }
+    .sidenav-title {
+      padding: 0.5rem 1.25rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .sidenav a {
+      display: block;
+      padding: 0.4rem 1.25rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidenav a:hover { color: var(--text); background: var(--bg); }
+    .sidenav a.active {
+      color: var(--primary);
+      border-left-color: var(--primary);
+      background: #eef2ff;
+      font-weight: 600;
+    }
+    .sidenav .nav-section {
+      padding: 0.75rem 1.25rem 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.5rem;
+    }
+    .sidenav .nav-lab { font-weight: 600; color: var(--text); font-size: 0.9rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .sidenav .nav-stretch { opacity: 0.7; }
+
+    /* Hero adjusts for sidenav */
+    .hero { margin-left: 260px; }
 
     /* Table of Contents */
     .toc {
@@ -228,6 +281,11 @@
     details.wait-block .details-content h4 { font-size: 0.95rem; color: #6d28d9; margin-bottom: 0.5rem; }
 
     /* Responsive */
+    @media (max-width: 900px) {
+      .sidenav { display: none; }
+      .hero { margin-left: 0; }
+      .container { margin-left: auto; max-width: 900px; }
+    }
     @media (max-width: 640px) {
       .hero h1 { font-size: 1.8rem; }
       .container { padding: 1rem; }
@@ -236,6 +294,21 @@
   </style>
 </head>
 <body>
+
+<!-- ============ SIDE NAVIGATION ============ -->
+<nav class="sidenav" id="sidenav">
+  <div class="sidenav-title">Hands-on Lab</div>
+  <a href="#prerequisites">✅ Prerequisites</a>
+  <a href="#getting-started">🚀 Getting Started</a>
+  <div class="nav-section">Labs</div>
+  <a href="#lab1" class="nav-lab">1 &nbsp;View Results Dashboard</a>
+  <a href="#lab2" class="nav-lab nav-stretch">2 &nbsp;Share Session</a>
+  <a href="#lab3" class="nav-lab nav-stretch">3 &nbsp;Close Session</a>
+  <a href="#lab4" class="nav-lab nav-stretch">4 &nbsp;Export Results</a>
+  <div class="nav-section">Finish</div>
+  <a href="#wrapup">🎯 Wrap-up</a>
+  <a href="#resources">📚 Resources</a>
+</nav>
 
 <!-- ============ HERO ============ -->
 <div class="hero">
@@ -1121,6 +1194,42 @@ function copyCode(btn) {
     }, 2000);
   });
 }
+
+// Scrollspy
+(function() {
+  const nav = document.getElementById('sidenav');
+  if (!nav) return;
+  const links = nav.querySelectorAll('a[href^="#"]');
+  const sections = [];
+  links.forEach(link => {
+    const id = link.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) sections.push({ id, el, link });
+  });
+
+  function update() {
+    const scrollY = window.scrollY + 120;
+    let current = sections[0];
+    for (const s of sections) {
+      if (s.el.offsetTop <= scrollY) current = s;
+    }
+    links.forEach(l => l.classList.remove('active'));
+    if (current) current.link.classList.add('active');
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+
+  // Smooth scroll
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const id = link.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
 </script>
 
 </body>
